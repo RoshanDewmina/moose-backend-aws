@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoVue/Jazz Moose Application</title>
+    <link rel="shortcut icon" href="./static/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-height: 60px;
+        }
+        .header h1 {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+        .endpoint {
+            margin-bottom: 20px;
+        }
+        .endpoint h3 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .description {
+            padding: 10px;
+            background-color: #e2e2e2;
+            border-left: 5px solid #333;
+            margin-top: -10px;
+            display: flex;
+            align-items: center;
+        }
+        .description img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="./static/img/logo.svg" alt="Logo 1">
+        <h1>Open API for Jazz's Micro Utility Operating Systen (Moose)</h1>
+        <img src="./static/img/JAZZ-logo.png" alt="Logo 2">
+    </div>
+
+    <h2>1. Authentication Endpoints</h2>
+    
+    <div class="endpoint">
+        <h3>/api/login</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows users to authenticate themselves by providing their login credentials (such as email and password). Upon successful authentication, the user is granted access to the application and receives a session token for subsequent requests.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/api/token/refresh</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint is used to refresh an expired or soon-to-expire authentication token. By sending a valid refresh token, the user can obtain a new session token without needing to log in again.</p>
+        </div>
+    </div>
+
+    <h2>2. User Management Endpoints</h2>
+
+    <div class="endpoint">
+        <h3>/api/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint is used for new user registration. Users provide necessary details such as name, email, and password to create a new account within the system.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/manageUser/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves a list of all registered users in the system. It is typically used by administrators to manage and monitor the user base.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/manageUser/{user_id}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves detailed information about a specific user by their unique ID. It allows administrators to view user profiles and manage user-specific settings.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/userlog/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint provides access to user activity logs. It lists the actions performed by users within the application, useful for auditing and monitoring purposes.</p>
+        </div>
+    </div>
+
+    <h2>3. Email Permission Management</h2>
+
+    <div class="endpoint">
+        <h3>/EmailPermission/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows administrators to retrieve a list of all email permissions configured in the system. It also supports the creation of new permissions, defining which email addresses have specific rights or access within the application.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/EmailPermission/{email}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves the permissions associated with a specific email address. It is useful for verifying what actions a particular user can perform based on their email.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/EmailPermission/{permissionId}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows administrators to delete or update existing email permissions by specifying the permission ID. It helps in maintaining accurate and up-to-date permission settings.</p>
+        </div>
+    </div>
+
+    <h2>4. Home and Device Management Endpoints</h2>
+
+    <div class="endpoint">
+        <h3>/homes/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves a list of all HEMS controllers associated with different homes. It also supports the creation of new HEMS and the deletion of existing ones, allowing for efficient management of home energy systems.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{api_key}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves detailed information about a specific HEMS controller using its associated API key. It is useful for accessing route details programmatically.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{hemsc_Id}/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint provides detailed information about a specific HEMS using its unique HEMS ID. It is useful for managing and monitoring individual home energy systems.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows the updating of HEMS controller details for a specific home. It is used to modify the configuration of home energy systems.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/preference/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves all preferences associated with a specific home. It also allows updating of these preferences, enabling users to customize settings related to home energy management.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves a list of all devices associated with a specific home. It also allows for the addition of new devices, facilitating the integration of various energy management hardware.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves detailed information about a specific device within a home. It also supports updating or deleting the device, providing full lifecycle management for energy devices.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/devicesEnergy/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows for the retrieval and creation of energy records for a specific device. It is crucial for tracking and managing the energy consumption of individual devices.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/devicesEnergy/mocupe</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint is a mockup endpoint for testing and simulating device energy data. It is typically used in development and testing environments.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/schedule/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves all schedules associated with a specific device in a home. It allows users to manage when and how devices operate based on predefined schedules.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/schedule/{schedule_day}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint is used to create or update the daily schedules for a specific device. It ensures that devices operate efficiently according to user-defined time slots.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/setpoint/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves all setpoints associated with a specific device. It also allows users to create new setpoints, defining specific operational parameters for devices.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/devices/{device_id}/setpoint/{setpoint_index}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows for the deletion or updating of specific setpoints by index. It helps maintain accurate control over device operations.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/homeEnergy/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves energy data for the entire home and allows the creation of new energy records. It is used for monitoring and managing the overall energy consumption of a household.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/events/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint provides access to all events associated with a specific home. It also allows users/copilot to create new events, which can be used for automation or alerts within the home energy system.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/events/current</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves the current events active within a home. It is used to monitor ongoing activities and respond to real-time changes in the home energy system.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/events/{event_id}/cancel</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows users to cancel a specific event by its ID. It is useful for stopping or modifying scheduled activities within the home.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/events/{event_id}/opt-out</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows users to opt-out of a specific event, preventing it from affecting their home energy system. It is used for managing participation in automated energy management programs.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/telemetry/{device_id}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves telemetry data (Active/Reactive Power, Volatge, Current, Frequency, SOC, Status) for a specific device, providing real-time insights into device performance and status.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/telemetry/{device_id}/create</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows for the creation of new telemetry data for a specific device. It is used for recording device performance metrics.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/device/{device_id}/telemetry</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Retrieves telemetry data for a specific device by its ID. Allows for precise monitoring of device status.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_id}/device/{device_id}/telemetry/create</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint retrieves telemetry data by device, useful for monitoring the performance of individual devices across different homes.</p>
+        </div>
+    </div>
+
+    <h2>5. Temperature Management</h2>
+
+    <div class="endpoint">
+        <h3>/temperature/</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> This endpoint allows for the creation of telemetry data by device, enabling detailed performance tracking and analysis.</p>
+        </div>
+    </div>
+
+    <div class="endpoint">
+        <h3>/homes/{home_Id}/pricing/config</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Registers a new pricing configuration for a specific home. This allows for the setup of pricing schemas tailored to the home's requirements.</p>
+        </div>
+        <div class="examples">
+            <p><strong>Examples:</strong></p>
+            <pre>
+                <code class="json">
+        "example for flat_rate": {
+            "_id": "5a9e3449b572e101fe470d7f",
+            "hemscID": "5a9e3449b572e101fe470d7f",
+            "schema_name": "flat_rate",
+            "description": "Flat rate pricing for all usage",
+            "flat_rate": 0.15
+        },
+        "example for tiered": {
+            "_id": "5a9e3449b572e101fe470d7f",
+            "hemscID": "5a9e3449b572e101fe470d7f",
+            "schema_name": "tiered",
+            "description": "Pricing based on usage tiers",
+            "tiers": [
+                {"limit": 100, "rate": 0.10},
+                {"limit": 200, "rate": 0.15},
+                {"limit": 300, "rate": 0.20}
+            ]
+        },
+        "example for time_of_use": {
+            "_id": "5a9e3449b572e101fe470d7f",
+            "hemscID": "5a9e3449b572e101fe470d7f",
+            "schema_name": "time_of_use",
+            "description": "Pricing based on time of day",
+            "peak_rate": 0.20,
+            "off_peak_rate": 0.10,
+            "peak_hours": [8, 9, 17, 18]
+        }
+                </code>
+            </pre>
+        </div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>/homes/{home_Id}/pricing/{schema_name}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Retrieves the pricing schema for a specific home by its schema name. This allows users to view the details of the registered pricing configuration.</p>
+        </div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>/homes/{home_Id}/pricing/{schema_name}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Deletes a pricing schema for a specific home by its schema name. This action permanently removes the pricing configuration from the system.</p>
+        </div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>/homes/{home_Id}/pricing/update</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Updates the existing pricing configuration for a specific home. This allows modifications to the pricing schema to reflect new pricing strategies.</p>
+        </div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>/homes/{home_Id}/pricing/devices/{device_Id}/earning/{schema_name}</h3>
+        <div class="description">
+            <img src="./static/img/icon-description.svg" alt="Description Icon">
+            <p><strong>Description:</strong> Calculates the earnings for a specific device under a given pricing schema. This endpoint provides insights into the financial performance of devices based on the applied pricing model.</p>
+        </div>
+    </div>
+</body>
+</html>

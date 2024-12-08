@@ -1,0 +1,36 @@
+# version: '3.4'
+services:
+  backend:
+    build: .
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    networks:
+      - app-tier
+    links:
+      - mongo_db
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    image: mongo:5.0.5
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+    ports:
+    - 27017:27017
+    networks:
+      - app-tier
+    volumes:
+    - mongodbdata:/data/db
+    - mongo-configdb:/data/configdb
+volumes:
+  mongodbdata:
+    driver: local
+  mongo-configdb:
+    driver: local
+
+networks:
+  app-tier:
+    driver: bridge
